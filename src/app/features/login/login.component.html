@@ -1,0 +1,35 @@
+<div class="row">
+    <div class="col-3">
+    </div>
+    <div class="col-9">
+
+        @if (showOtpForm) {
+        <form class="login-form">
+            <div class="row">
+                <span>Please enter the OTP sent to</span>
+            </div>
+            <div class="row">
+                <span>9876543210</span>
+            </div>
+            <div class="row">
+                <mat-form-field class="example-full-width w-50">
+                    <input matInput placeholder="OTP" value="">
+                </mat-form-field>
+            </div>
+            <div>
+                <button type="button" class="btn btn-primary w-25 text-center">Verify</button>
+            </div>
+        </form>
+        } @else{
+        <form class="login-form">
+            <mat-form-field class="example-full-width w-50">
+                <mat-label>Enter Mobile number</mat-label>
+                <input matInput placeholder="9876543210" value="">
+            </mat-form-field>
+            <div>
+                <button type="button" class="btn btn-primary w-25 text-center" (click)="sendOtp()">Request OTP</button>
+            </div>
+        </form>
+        }
+    </div>
+</div>

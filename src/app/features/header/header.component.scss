@@ -1,0 +1,28 @@
+.navbar {
+    border-top: 1px solid #b177eb;
+
+    a {
+        color: #752b7d !important;
+    }
+}
+
+.sticky {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 12px;
+    z-index: 100;
+    background: radial-gradient(circle, rgba(238, 174, 220, 1) 0%, rgba(191, 148, 233, 1) 100%);
+
+    div.collapse {
+        padding-left: 120px !important;
+    }
+}
+
+img {
+    border-radius: 50%;
+}
+
+.action-container {
+    height: 32px;
+}

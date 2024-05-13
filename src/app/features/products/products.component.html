@@ -1,0 +1,104 @@
+<div class="row">
+    <div class="col-4">
+        <span class="material-icons">
+            tune
+        </span>
+    </div>
+    <div class="col-8 text-end">
+        <div class="dropdown">
+            <label>Sort by</label>
+            <button class="ms-3 btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
+                data-bs-toggle="dropdown" aria-expanded="false">
+                Price : Low to high
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                <li><a class="dropdown-item" href="#">Price : Low to high</a></li>
+                <li><a class="dropdown-item" href="#">Price : High to low</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-3">
+        <section class="price-section mt-5">
+            <div class="fw-bold">Price</div>
+            <mat-slider min="0" max="5000" class="w-75" [discrete]="true" [step]="100" color="primary">
+                <input value="300" matSliderStartThumb>
+                <input value="2000" matSliderEndThumb>
+            </mat-slider>
+        </section>
+        <section class="category-section mt-3">
+            <div class="fw-bold">Category/Subcategory</div>
+            @for (category of categories; track $index) {
+            <span class="example-list-section">
+                <mat-checkbox class="example-margin" [checked]="category.isChecked" color="primary"
+                    (change)="handleParentChecked(category,$event.checked)">
+                    {{category.name}}
+                </mat-checkbox>
+            </span>
+            <span class="example-list-section">
+                <ul>
+                    @for (subcategory of category.subcategories; track subcategory) {
+                    <li>
+                        <mat-checkbox [checked]="subcategory.isChecked">
+                            {{subcategory.name}}
+                        </mat-checkbox>
+                    </li>
+                    }
+                </ul>
+            </span>
+            }
+        </section>
+    </div>
+    <div class="col-9">
+        @for (row of [].constructor(products.length/3); track row; let idx= $index) {
+        <div class="row">
+            @for (product of products.slice(idx,idx+3); track $index) {
+            <div class="col-sm-4 mt-3">
+                <div class="card">
+                    <div class="cursor-pointer" routerLink="1">
+                        <img class="card-img-top" [src]="product.urls?.[0]?.url" alt="image">
+                    </div>
+
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-8">
+                                <p class="text-danger">Only 1 left in stock</p>
+                            </div>
+                            <div class="col-4 text-end">
+                                <span class="material-icons cursor-pointer">
+                                    favorite
+                                </span>
+                            </div>
+                        </div>
+
+                        <span>{{product.name}}</span>
+                        <div class="row">
+                            <div class="col-8">
+                                <span>{{product.price}}</span>
+                                <span
+                                    class="ms-3 text-decoration-line-through small">{{product.price+(10*product.price/100)
+                                    |
+                                    number : '1.0-2'}}</span>
+                            </div>
+                            <div class="col-4 text-end">
+                                <span class="text-danger">Flat 10%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            }
+        </div>
+        }
+
+    </div>
+
+</div>
+<div class="row mt-3">
+    <div class="col-3 text-center">
+    </div>
+    <div class="col-9 text-center">
+        <button type="button" class="btn btn-outline-primary w-25">See more products</button>
+    </div>
+</div>
